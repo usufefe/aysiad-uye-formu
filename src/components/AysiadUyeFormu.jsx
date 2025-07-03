@@ -856,12 +856,29 @@ export default function AysiadUyeFormu() {
                   required 
                   name="sektor" 
                   className="aysiad-select" 
-                  value={form.sektor} 
-                  onChange={handleChange}
+                  value={form.sektor === 'Diğer' ? 'Diğer' : (sektorler.includes(form.sektor) ? form.sektor : 'Diğer')} 
+                  onChange={(e) => {
+                    if (e.target.value === 'Diğer') {
+                      setForm(prev => ({ ...prev, sektor: '' }));
+                    } else {
+                      setForm(prev => ({ ...prev, sektor: e.target.value }));
+                    }
+                  }}
                 >
                   <option value="">Sektör seçiniz</option>
                   {sektorler.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
+                {(form.sektor === '' || !sektorler.includes(form.sektor)) && (
+                  <input 
+                    required 
+                    name="sektor" 
+                    className="aysiad-input" 
+                    value={form.sektor} 
+                    onChange={handleChange}
+                    placeholder="Sektörünüzü yazınız"
+                    style={{ marginTop: '8px' }}
+                  />
+                )}
               </div>
             </div>
 
