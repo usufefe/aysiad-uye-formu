@@ -274,6 +274,7 @@ const styles = `
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     min-width: 0;
+    color: #111 !important;
   }
 
   .aysiad-input:focus {
@@ -300,6 +301,7 @@ const styles = `
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     box-sizing: border-box;
+    color: #111 !important;
   }
 
   .aysiad-select:focus {
@@ -321,6 +323,7 @@ const styles = `
     resize: vertical;
     font-family: inherit;
     box-sizing: border-box;
+    color: #111 !important;
   }
 
   .aysiad-textarea:focus {
@@ -506,6 +509,35 @@ const styles = `
     flex: 1;
     padding: 0.25rem;
     box-sizing: border-box;
+    color: #111 !important;
+  }
+
+  /* Autofill stilleri - Chrome'un sarımsı arka plan ve görünmez yazı sorununu çözer */
+  .aysiad-input:-webkit-autofill,
+  .aysiad-input:-webkit-autofill:hover,
+  .aysiad-input:-webkit-autofill:focus,
+  .aysiad-input:-webkit-autofill:active {
+    -webkit-text-fill-color: #111 !important;
+    box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  .aysiad-select:-webkit-autofill,
+  .aysiad-select:-webkit-autofill:hover,
+  .aysiad-select:-webkit-autofill:focus,
+  .aysiad-select:-webkit-autofill:active {
+    -webkit-text-fill-color: #111 !important;
+    box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  .aysiad-textarea:-webkit-autofill,
+  .aysiad-textarea:-webkit-autofill:hover,
+  .aysiad-textarea:-webkit-autofill:focus,
+  .aysiad-textarea:-webkit-autofill:active {
+    -webkit-text-fill-color: #111 !important;
+    box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
   }
 
   .aysiad-tag-suggestions {
