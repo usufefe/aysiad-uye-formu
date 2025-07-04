@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import aysiadLogo from '../assets/aysiad-logo.png';
 
 const sektorler = [
   'Diş', 'Mobilya', 'İnşaat', 'Hukuk', 'Gıda', 'Kozmetik', 'Tekstil', 'Sağlık', 'Otomotiv', 'Eğitim', 'Diğer'
@@ -173,6 +174,25 @@ const styles = `
   .aysiad-form-header-content {
     position: relative;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .aysiad-form-header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .aysiad-form-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
   }
 
   .aysiad-form-title {
@@ -252,6 +272,8 @@ const styles = `
     transition: all 0.3s ease;
     background: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    min-width: 0;
   }
 
   .aysiad-input:focus {
@@ -277,6 +299,7 @@ const styles = `
     background: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    box-sizing: border-box;
   }
 
   .aysiad-select:focus {
@@ -297,6 +320,7 @@ const styles = `
     min-height: 120px;
     resize: vertical;
     font-family: inherit;
+    box-sizing: border-box;
   }
 
   .aysiad-textarea:focus {
@@ -311,10 +335,18 @@ const styles = `
     gap: 0.75rem;
     align-items: center;
     margin-bottom: 0.75rem;
+    width: 100%;
   }
 
   .aysiad-array-input {
     flex: 1;
+    min-width: 0;
+  }
+
+  .aysiad-array-field-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
   }
 
   .aysiad-btn {
@@ -399,6 +431,8 @@ const styles = `
     background: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .aysiad-tag-list:focus-within {
@@ -466,11 +500,12 @@ const styles = `
   .aysiad-tag-input {
     border: none;
     outline: none;
-    min-width: 120px;
+    min-width: 80px;
     font-size: 1rem;
     background: transparent;
     flex: 1;
     padding: 0.25rem;
+    box-sizing: border-box;
   }
 
   .aysiad-tag-suggestions {
@@ -602,6 +637,11 @@ const styles = `
       padding: 1.5rem 1rem;
     }
 
+    .aysiad-form-logo {
+      width: 60px;
+      height: 60px;
+    }
+
     .aysiad-form-body {
       padding: 1rem;
     }
@@ -626,6 +666,13 @@ const styles = `
       min-width: auto;
       width: auto;
       padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .aysiad-array-field-buttons {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
     }
 
     .aysiad-tag-list {
@@ -635,6 +682,16 @@ const styles = `
     .aysiad-tag {
       font-size: 0.8rem;
       padding: 0.25rem 0.5rem;
+    }
+
+    .aysiad-tag-input {
+      min-width: 60px;
+      font-size: 0.9rem;
+    }
+
+    .aysiad-input, .aysiad-select, .aysiad-textarea {
+      font-size: 0.9rem;
+      padding: 0.75rem 0.875rem;
     }
 
     .aysiad-success-container {
@@ -674,6 +731,30 @@ const styles = `
       min-width: 36px;
       height: 36px;
       font-size: 0.875rem;
+    }
+
+    .aysiad-input, .aysiad-select, .aysiad-textarea {
+      font-size: 0.875rem;
+      padding: 0.625rem 0.75rem;
+    }
+
+    .aysiad-tag-input {
+      min-width: 50px;
+      font-size: 0.875rem;
+    }
+
+    .aysiad-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.4rem;
+    }
+
+    .aysiad-form-section-title {
+      font-size: 1.1rem;
+    }
+
+    .aysiad-form-logo {
+      width: 50px;
+      height: 50px;
     }
   }
 `;
@@ -810,8 +891,15 @@ export default function AysiadUyeFormu() {
       <div className="aysiad-form-wrapper">
         <div className="aysiad-form-header">
           <div className="aysiad-form-header-content">
-            <h1 className="aysiad-form-title">AYSİAD Üye Başvuru Formu</h1>
-            <p className="aysiad-form-subtitle">Avrasya Yönetici Sanayici ve İş Adamları Derneği</p>
+            <img 
+              src={aysiadLogo} 
+              alt="AYSİAD Logo" 
+              className="aysiad-form-logo"
+            />
+            <div className="aysiad-form-header-text">
+              <h1 className="aysiad-form-title">AYSİAD Üye Başvuru Formu</h1>
+              <p className="aysiad-form-subtitle">Avrasya Yönetici Sanayici ve İş Adamları Derneği</p>
+            </div>
           </div>
         </div>
         
@@ -902,30 +990,32 @@ export default function AysiadUyeFormu() {
                       onChange={e => handleArrayChange('telefonlar', i, e.target.value)}
                       placeholder="0532 123 45 67"
                     />
-                    <button 
-                      type="button" 
-                      onClick={() => addArrayField('telefonlar')}
-                      className="aysiad-btn aysiad-btn-add"
-                      title="Telefon ekle"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                    {form.telefonlar.length > 1 && (
+                    <div className="aysiad-array-field-buttons">
                       <button 
                         type="button" 
-                        onClick={() => removeArrayField('telefonlar', i)}
-                        className="aysiad-btn aysiad-btn-remove"
-                        title="Telefon sil"
+                        onClick={() => addArrayField('telefonlar')}
+                        className="aysiad-btn aysiad-btn-add"
+                        title="Telefon ekle"
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                       </button>
-                    )}
+                      {form.telefonlar.length > 1 && (
+                        <button 
+                          type="button" 
+                          onClick={() => removeArrayField('telefonlar', i)}
+                          className="aysiad-btn aysiad-btn-remove"
+                          title="Telefon sil"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                          </svg>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -942,30 +1032,32 @@ export default function AysiadUyeFormu() {
                       onChange={e => handleArrayChange('emailler', i, e.target.value)}
                       placeholder="ornek@email.com"
                     />
-                    <button 
-                      type="button" 
-                      onClick={() => addArrayField('emailler')}
-                      className="aysiad-btn aysiad-btn-add"
-                      title="E-mail ekle"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                    {form.emailler.length > 1 && (
+                    <div className="aysiad-array-field-buttons">
                       <button 
                         type="button" 
-                        onClick={() => removeArrayField('emailler', i)}
-                        className="aysiad-btn aysiad-btn-remove"
-                        title="E-mail sil"
+                        onClick={() => addArrayField('emailler')}
+                        className="aysiad-btn aysiad-btn-add"
+                        title="E-mail ekle"
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                       </button>
-                    )}
+                      {form.emailler.length > 1 && (
+                        <button 
+                          type="button" 
+                          onClick={() => removeArrayField('emailler', i)}
+                          className="aysiad-btn aysiad-btn-remove"
+                          title="E-mail sil"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                          </svg>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1003,30 +1095,32 @@ export default function AysiadUyeFormu() {
                       onChange={e => handleArrayChange('websiteleri', i, e.target.value)}
                       placeholder="https://www.sirketiniz.com"
                     />
-                    <button 
-                      type="button" 
-                      onClick={() => addArrayField('websiteleri')}
-                      className="aysiad-btn aysiad-btn-add"
-                      title="Web sitesi ekle"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                    {form.websiteleri.length > 1 && (
+                    <div className="aysiad-array-field-buttons">
                       <button 
                         type="button" 
-                        onClick={() => removeArrayField('websiteleri', i)}
-                        className="aysiad-btn aysiad-btn-remove"
-                        title="Web sitesi sil"
+                        onClick={() => addArrayField('websiteleri')}
+                        className="aysiad-btn aysiad-btn-add"
+                        title="Web sitesi ekle"
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                       </button>
-                    )}
+                      {form.websiteleri.length > 1 && (
+                        <button 
+                          type="button" 
+                          onClick={() => removeArrayField('websiteleri', i)}
+                          className="aysiad-btn aysiad-btn-remove"
+                          title="Web sitesi sil"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                          </svg>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1041,30 +1135,32 @@ export default function AysiadUyeFormu() {
                       onChange={e => handleArrayChange('instagramlar', i, e.target.value)}
                       placeholder="@sirketiniz"
                     />
-                    <button 
-                      type="button" 
-                      onClick={() => addArrayField('instagramlar')}
-                      className="aysiad-btn aysiad-btn-add"
-                      title="Instagram ekle"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </button>
-                    {form.instagramlar.length > 1 && (
+                    <div className="aysiad-array-field-buttons">
                       <button 
                         type="button" 
-                        onClick={() => removeArrayField('instagramlar', i)}
-                        className="aysiad-btn aysiad-btn-remove"
-                        title="Instagram sil"
+                        onClick={() => addArrayField('instagramlar')}
+                        className="aysiad-btn aysiad-btn-add"
+                        title="Instagram ekle"
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <line x1="18" y1="6" x2="6" y2="18"></line>
-                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
                       </button>
-                    )}
+                      {form.instagramlar.length > 1 && (
+                        <button 
+                          type="button" 
+                          onClick={() => removeArrayField('instagramlar', i)}
+                          className="aysiad-btn aysiad-btn-remove"
+                          title="Instagram sil"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                          </svg>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
