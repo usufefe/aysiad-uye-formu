@@ -749,7 +749,7 @@ export default function AysiadUyeFormu() {
         instagramlar: form.instagramlar.filter(i => i.trim()),
       };
 
-      const response = await fetch('http://localhost:3000/api/uye-kayit', {
+      const response = await fetch('https://aysiad-chat-backend.onrender.com/api/uye-kayit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cleanForm),
