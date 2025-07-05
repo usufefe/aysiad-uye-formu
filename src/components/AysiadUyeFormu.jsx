@@ -209,6 +209,14 @@ const styles = `
     font-weight: 300;
   }
 
+  .aysiad-form-organizer {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0.5rem 0 0 0;
+    font-weight: 300;
+    font-style: italic;
+  }
+
   .aysiad-form-body {
     padding: 2rem;
   }
@@ -665,6 +673,10 @@ const styles = `
       font-size: 1rem;
     }
 
+    .aysiad-form-organizer {
+      font-size: 0.85rem;
+    }
+
     .aysiad-form-header {
       padding: 1.5rem 1rem;
     }
@@ -787,6 +799,10 @@ const styles = `
     .aysiad-form-logo {
       width: 50px;
       height: 50px;
+    }
+
+    .aysiad-form-organizer {
+      font-size: 0.8rem;
     }
   }
 `;
@@ -931,6 +947,7 @@ export default function AysiadUyeFormu() {
             <div className="aysiad-form-header-text">
               <h1 className="aysiad-form-title">AYSİAD Üye Başvuru Formu</h1>
               <p className="aysiad-form-subtitle">Avrasya Yönetici Sanayici ve İş Adamları Derneği</p>
+              <p className="aysiad-form-organizer">Düzenleyen: AYSIAD Gençlik Komitesi - Utku Tekin</p>
             </div>
           </div>
         </div>
