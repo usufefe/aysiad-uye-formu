@@ -1257,16 +1257,16 @@ export default function AysiadUyeFormu() {
                   <line x1="16" y1="17" x2="8" y2="17"></line>
                   <polyline points="10,9 9,9 8,9"></polyline>
                 </svg>
-                Ek Bilgiler
+                AYSİAD Yapay Zeka Asistanı’nın Şirketiniz Hakkında Bilgi Edinmesini İstediğiniz Detaylar
               </h3>
               <div className="aysiad-form-field">
-                <label className="aysiad-form-label">Kısa Açıklama / Not</label>
+                <label className="aysiad-form-label">Açıklama / Not</label>
                 <textarea 
                   name="aciklama" 
                   className="aysiad-textarea" 
                   value={form.aciklama} 
                   onChange={handleChange}
-                  placeholder="Şirketiniz hakkında kısa bilgi veya özel notlarınız..."
+                  placeholder="Şirketiniz hakkında bilgi veya özel notlarınız...Örnek: İşletmemiz 1990 yılında kurulmuştur" 
                 />
               </div>
             </div>
